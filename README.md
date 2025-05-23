@@ -1,4 +1,4 @@
-# linux-notes
+# Selected Notes about Linux Softwares
 
 ## Contents
 
