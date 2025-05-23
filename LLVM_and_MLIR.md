@@ -49,7 +49,7 @@ sudo apt install clang
 
 - 查看支持的pass
 
-Passes [https://mlir.llvm.org/docs/Passes/#-empty-tensor-to-alloc-tensor](https://mlir.llvm.org/docs/Passes/#-empty-tensor-to-alloc-tensor)
+Passes [https://mlir.llvm.org/docs/Passes/](https://mlir.llvm.org/docs/Passes/)
 
 ### 浮点复数加法
 
