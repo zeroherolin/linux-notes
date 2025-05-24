@@ -2,6 +2,8 @@
 
 ## Contents
 
+- [Allo_Accelerator_Design_Language.md](Allo_Accelerator_Design_Language.md)
+
 - [LLVM_and_MLIR.md](LLVM_and_MLIR.md) [Updating...]
 
 - [Nvidia_CUDA基础.md](Nvidia_CUDA基础.md) [Updating...]
