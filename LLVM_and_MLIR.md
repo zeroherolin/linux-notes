@@ -188,6 +188,5 @@ build && run "$1" "$2" "$3" "$4"
 5.200000 6.400000
 
 ***
-👉 Updating...
 ⭐ I like your Star!
 🔙 [Go Back](README.md)

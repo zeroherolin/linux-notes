@@ -4,7 +4,7 @@
 
 - [Allo_Accelerator_Design_Language.md](Allo_Accelerator_Design_Language.md)
 
-- [LLVM_and_MLIR.md](LLVM_and_MLIR.md) [Updating...]
+- [LLVM_and_MLIR.md](LLVM_and_MLIR.md)
 
 - [Nvidia_CUDA基础.md](Nvidia_CUDA基础.md) [Updating...]
 
@@ -12,7 +12,7 @@
 
 - [Ubuntu安装Nvidia驱动、CUDA、Pytorch.md](Ubuntu安装Nvidia驱动、CUDA、Pytorch.md)
 
-- [Linux_Arm64.md](Linux_Arm64.md) [Updating...]
+- [Linux_Arm64.md](Linux_Arm64.md)
 
 - [Ollama使用.md](Ollama使用.md)
 

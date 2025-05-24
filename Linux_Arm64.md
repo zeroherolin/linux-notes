@@ -162,6 +162,5 @@ make
 ```
 
 ***
-👉 Updating...
 ⭐ I like your Star!
 🔙 [Go Back](README.md)
