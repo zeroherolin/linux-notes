@@ -91,8 +91,8 @@ RUN sudo apt update && \
     apt -y install git wget vim gdb make software-properties-common libssl-dev ninja-build
 
 # set git proxy
-RUN git config --global http.proxy http://127.0.0.1:7890 && \
-    git config --global https.proxy https://127.0.0.1:7890
+# RUN git config --global http.proxy http://127.0.0.1:7890 && \
+#     git config --global https.proxy https://127.0.0.1:7890
 
 # install gcc-9
 RUN sudo apt -y install build-essential && \
@@ -165,8 +165,8 @@ ENV LLVM_BUILD_DIR="/root/llvm-project/build"
 ENV PATH="${PATH}:/root/llvm-project/build/bin"
 
 # unset git proxy
-RUN git config --global --unset http.proxy && \
-    git config --global --unset https.proxy
+# RUN git config --global --unset http.proxy && \
+#     git config --global --unset https.proxy
 
 # install allo
 RUN cd /root/allo && \
