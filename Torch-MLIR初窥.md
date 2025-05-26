@@ -33,7 +33,7 @@ import torch
 from torch_mlir import fx
 from torch_mlir.compiler_utils import run_pipeline_with_repro_report
 
-# 定义一个简单的 PyTorch 模型
+# 定义一个简单的PyTorch模型
 class SimpleModel(torch.nn.Module):
     def __init__(self):
         super().__init__()
@@ -44,13 +44,13 @@ class SimpleModel(torch.nn.Module):
 # 创建模型实例
 model = SimpleModel()
 
-# 生成 Torch dialect IR
+# 生成Torch dialect IR
 module = fx.export_and_import(model, torch.randn(3, 4), torch.randn(4, 3))
 
-# 打印生成的 IR
+# 打印生成的IR
 print(module)
 
-# 转换为 Linalg dialect
+# 转换为Linalg dialect
 run_pipeline_with_repro_report(
     module,
     (
