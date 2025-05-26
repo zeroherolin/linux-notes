@@ -2,6 +2,8 @@
 
 ## Contents
 
+- [Torch-MLIR初窥.md](Torch-MLIR初窥.md)
+
 - [Allo_Accelerator_Design_Language.md](Allo_Accelerator_Design_Language.md)
 
 - [LLVM_and_MLIR.md](LLVM_and_MLIR.md)

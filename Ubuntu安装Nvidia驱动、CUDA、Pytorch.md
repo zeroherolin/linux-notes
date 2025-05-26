@@ -38,6 +38,12 @@ export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
 source ~/.bashrc
 ```
 
+- 查看
+
+```bash
+nvcc --version
+```
+
 ## 安装pytorch
 
 - 创建虚拟环境
