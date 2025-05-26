@@ -55,6 +55,7 @@ run_pipeline_with_repro_report(
     module,
     (
         "builtin.module("
+        "func.func(torch-simplify-shape-calculations),"
         "func.func(torch-decompose-complex-ops),"
         "torch-backend-to-linalg-on-tensors-backend-pipeline)"
     ),
