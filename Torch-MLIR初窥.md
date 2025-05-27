@@ -54,11 +54,11 @@ if __name__ == "__main__":
     result = model.forward(input_x, input_y)
     print(f"{result}\n")
 
-    print("Generate ATEN IR ...\n")
+    print("Generate MLIR IR with ATEN ...\n")
     module = fx.export_and_import(model, input_x, input_y)
     print(module)
 
-    print("Generate MLIR IR ...\n")
+    print("Lowering MLIR IR to Linalg ...\n")
     run_pipeline_with_repro_report(
         module,
         (
@@ -91,7 +91,7 @@ tensor([[-0.6092,  4.0575,  2.9925],
         [-1.9833, -0.4637,  2.9944],
         [ 2.0524, -1.0501, -3.1811]])
 
-Generate ATEN IR ...
+Generate MLIR IR with ATEN ...
 
 module {
   func.func @main(%arg0: !torch.vtensor<[3,4],f32>, %arg1: !torch.vtensor<[4,3],f32>) -> !torch.vtensor<[3,3],f32> {
@@ -100,7 +100,7 @@ module {
   }
 }
 
-Generate MLIR IR ...
+Lowering MLIR IR to Linalg ...
 
 module {
   func.func @main(%arg0: tensor<3x4xf32>, %arg1: tensor<4x3xf32>) -> tensor<3x3xf32> {
@@ -140,7 +140,7 @@ if __name__ == "__main__":
     result = model.forward(input)
     print(f"{result}\n")
 
-    print("Generate ATEN IR ...\n")
+    print("Generate MLIR IR with ATEN ...\n")
     module = fx.export_and_import(model, input)
     print(module)
 ```
@@ -156,7 +156,7 @@ Pytorch infer ...
 
 tensor([10.+0.j, -2.+2.j, -2.+0.j, -2.-2.j])
 
-Generate ATEN IR ...
+Generate MLIR IR with ATEN ...
 
 module {
   func.func @main(%arg0: !torch.vtensor<[4],f32>) -> !torch.vtensor<[4],complex<f32>> {
@@ -210,11 +210,11 @@ if __name__ == "__main__":
     print(f"Real: {result[0]}\n"
           f"Imag: {result[1]}\n")
 
-    print("Generate ATEN IR ...\n")
+    print("Generate MLIR IR with ATEN ...\n")
     module = fx.export_and_import(model, input_real, input_imag)
     print(module)
 
-    print("Generate MLIR IR ...\n")
+    print("Lowering MLIR IR to Linalg ...\n")
     run_pipeline_with_repro_report(
         module,
         (
