@@ -4,7 +4,7 @@ Code: [https://github.com/llvm/torch-mlir](https://github.com/llvm/torch-mlir)
 
 <img src="assets/pytorch-mlir-arch.png" height=400/> <img src="assets/torch-mlir-arch.png" height=400/>
 
-## 构建torch-mlir环境
+## 构建Torch-MLIR环境
 
 - 直接安装快照
 
@@ -22,7 +22,7 @@ pip install --pre torch-mlir torchvision \
 
 编译失败多次，暂时放弃
 
-## torch-mlir测试
+## Torch-MLIR测试
 
 ### 矩阵乘
 

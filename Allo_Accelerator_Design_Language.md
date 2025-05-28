@@ -219,46 +219,6 @@ print(s.module)
 mod = s.build(target="vhls", mode="csyn", project="gemm.prj")
 ```
 
-## Allo原语
-
-```python
-# 将循环i拆分为一个两级嵌套循环，其中v作为内部循环的边界
-s.split(i,v)
-
-# 将同一嵌套循环中的多个子循环l融合为一个
-s.fuse(*l)
-
-# 在同一嵌套循环中切换子循环l的顺序
-s.reorder(*l)
-
-# 将操作Op1的循环i合并到操作Op2中相应的循环级别
-s.compute_at(Op1,Op2,i)
-
-# 通过因子v展开循环i
-s.unroll(i,v)
-
-# 将循环i展开为硬件实例
-s.unfold(i)
-
-# 以具有目标启动间隔v的流水线方式调度循环i
-s.pipeline(i,v)
-
-# 在循环i处创建一个中间缓冲区，用于存储数组A的结果
-s.buffer_at(A,i)
-
-# 创建一个存储数组值A的缓冲区，其中的值会在循环i中重复使用
-s.reuse_at(A,i)
-
-# 以因子v对数组A的维度d进行循环/块分区
-s.partition(A,d,v)
-
-# 以因子v将数组A的维度i压缩成字
-s.pack(A,i,v)
-
-# 使用深度v的FIFO将阵列A连接到目标Dst
-s.relay(A,Dst,v)
-```
-
 ## 整数输出稳态脉动阵列
 
 <img src="assets/systolic_array_pes.png" width=400/>
@@ -351,6 +311,46 @@ s.to(s.B_fifo, pe, axis=0, depth=N + 1)
 
 print(s.module)
 mod = s.build(target="vivado_hls", mode="hw", project="systolic_array.prj")
+```
+
+## Allo原语
+
+```python
+# 将循环i拆分为一个两级嵌套循环，其中v作为内部循环的边界
+s.split(i,v)
+
+# 将同一嵌套循环中的多个子循环l融合为一个
+s.fuse(*l)
+
+# 在同一嵌套循环中切换子循环l的顺序
+s.reorder(*l)
+
+# 将操作Op1的循环i合并到操作Op2中相应的循环级别
+s.compute_at(Op1,Op2,i)
+
+# 通过因子v展开循环i
+s.unroll(i,v)
+
+# 将循环i展开为硬件实例
+s.unfold(i)
+
+# 以具有目标启动间隔v的流水线方式调度循环i
+s.pipeline(i,v)
+
+# 在循环i处创建一个中间缓冲区，用于存储数组A的结果
+s.buffer_at(A,i)
+
+# 创建一个存储数组值A的缓冲区，其中的值会在循环i中重复使用
+s.reuse_at(A,i)
+
+# 以因子v对数组A的维度d进行循环/块分区
+s.partition(A,d,v)
+
+# 以因子v将数组A的维度i压缩成字
+s.pack(A,i,v)
+
+# 使用深度v的FIFO将阵列A连接到目标Dst
+s.relay(A,Dst,v)
 ```
 
 ***

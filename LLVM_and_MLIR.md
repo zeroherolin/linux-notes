@@ -39,7 +39,7 @@ export PYTHONPATH=$LLVM_BUILD_DIR/tools/mlir/python_packages/mlir_core
 
 通过pybind是为以后在python中调用做准备
 
-## MLIR编译
+## MLIR编译测试
 
 - 需要安装Clang编译器
 
@@ -185,7 +185,7 @@ build && run "$1" "$2" "$3" "$4"
 > $ ./run_simple_complex.sh 1.5 2.3 3.7 4.1 \
 5.200000 6.400000
 
-## MLIR to C
+## MLIR to C测试
 
 - mlir源码
 
