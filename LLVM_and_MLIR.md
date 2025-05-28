@@ -39,7 +39,7 @@ export PYTHONPATH=$LLVM_BUILD_DIR/tools/mlir/python_packages/mlir_core
 
 通过pybind是为以后在python中调用做准备
 
-## MLIR编译测试
+## MLIR编译
 
 - 需要安装Clang编译器
 
@@ -50,8 +50,6 @@ sudo apt install clang
 - 查看支持的pass
 
 Passes [https://mlir.llvm.org/docs/Passes/](https://mlir.llvm.org/docs/Passes/)
-
-### 浮点复数加法
 
 - mlir源码
 
@@ -145,7 +143,7 @@ mlir-translate --mlir-to-llvmir simple_complex_llvm.mlir -o simple_complex.ll
 
 ```bash
 clang -O3 simple_complex.ll -o simple_complex -Wno-override-module -mllvm -opaque-pointers
-# -opaque-pointers选项启用不透明指针模式：高版本llvm仅支持不透明指针
+# -opaque-pointers选项启用不透明指针模式：LLVM 15开始默认启用opaque-pointers，Clang 14仅部分支持或不支持此特性
 ```
 
 - 完整脚本（含验证）
@@ -182,10 +180,116 @@ run() {
 build && run "$1" "$2" "$3" "$4"
 ```
 
-结果
+输出
 
 > $ ./run_simple_complex.sh 1.5 2.3 3.7 4.1 \
 5.200000 6.400000
+
+## MLIR to C
+
+- mlir源码
+
+vector_add.mlir
+
+```
+func.func @vector_add(%arg0: memref<10xf32>, %arg1: memref<10xf32>, %arg2: memref<10xf32>) {
+  %c0 = arith.constant 0 : index
+  %c10 = arith.constant 10 : index
+  %c1 = arith.constant 1 : index
+  scf.for %i = %c0 to %c10 step %c1 {
+    %a = memref.load %arg0[%i] : memref<10xf32>
+    %b = memref.load %arg1[%i] : memref<10xf32>
+    %sum = arith.addf %a, %b : f32
+    memref.store %sum, %arg2[%i] : memref<10xf32>
+  }
+  return
+}
+```
+
+- Pass到emitc方言
+
+```bash
+mlir-opt vector_add.mlir \
+  --convert-arith-to-emitc \
+  --convert-func-to-emitc \
+  --convert-math-to-emitc \
+  --convert-memref-to-emitc \
+  --convert-scf-to-emitc \
+  -o vector_add_emitc.mlir
+```
+
+这里pass有问题，手动调整如下
+
+vector_add_emitc.mlir
+
+```
+emitc.func @vector_add(
+    %arg0: !emitc.array<10xf32>, %arg1: !emitc.array<10xf32>, %arg2: !emitc.array<10xf32>
+) {
+    %c0 = "emitc.constant"() {value = 0 : index} : () -> index
+    %c10 = "emitc.constant"() {value = 10 : index} : () -> index
+    %c1 = "emitc.constant"() {value = 1 : index} : () -> index
+    emitc.for %i = %c0 to %c10 step %c1 {
+        %a_lv = emitc.subscript %arg0[%i] : (!emitc.array<10xf32>, index) -> !emitc.lvalue<f32>
+        %b_lv = emitc.subscript %arg1[%i] : (!emitc.array<10xf32>, index) -> !emitc.lvalue<f32>
+        %c_lv = emitc.subscript %arg2[%i] : (!emitc.array<10xf32>, index) -> !emitc.lvalue<f32>
+        %a = emitc.load %a_lv : !emitc.lvalue<f32>
+        %b = emitc.load %b_lv : !emitc.lvalue<f32>
+        %sum = emitc.add %a, %b : (f32, f32) -> f32
+        "emitc.assign"(%c_lv, %sum) : (!emitc.lvalue<f32>, f32) -> ()
+    }
+    emitc.return
+}
+```
+
+- 编译到C
+
+vector_add.cpp
+
+```cpp
+void vector_add(float v1[10], float v2[10], float v3[10]) {
+  size_t v4 = 0;
+  size_t v5 = 10;
+  size_t v6 = 1;
+  for (size_t v7 = v4; v7 < v5; v7 += v6) {
+    float v8 = v1[v7];
+    float v9 = v2[v7];
+    float v10 = v8 + v9;
+    v3[v7] = v10;
+  }
+  return;
+}
+```
+
+- 测试
+
+```cpp
+#include <stdio.h>
+
+void vector_add(float v1[10], float v2[10], float v3[10]);
+
+int main() {
+  float vector1[10] = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
+  float vector2[10] = {10.0, 9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0};
+  float result[10];
+
+  vector_add(vector1, vector2, result);
+
+  printf("Result:\n");
+  for (int i = 0; i < 10; i++) {
+    printf("%.2f ", result[i]);
+  }
+  printf("\n");
+  
+  return 0;
+}
+```
+
+输出
+
+> Result: \
+11.00 11.00 11.00 11.00 11.00 11.00 11.00 11.00 11.00 11.00 
+
 
 ***
 ⭐ I like your Star!
