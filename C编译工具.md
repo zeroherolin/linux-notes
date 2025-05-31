@@ -12,7 +12,7 @@ graph TD
     A --> D[Make & Makefile<br>（构建管理系统）]
     D --> E[自动化构建过程<br>（多文件编译链接）]
     A --> F[CMake & CMakeLists<br>（元构建系统）]
-    F --> G[构建系统描述文件<br>（Makefile 或 Ninja.build）]
+    F --> G[构建系统描述文件<br>（Makefile 或 build.ninja）]
     G --> H[跨平台构建<br>（Linux/macOS/Windows）]
     F --> I[Ninja<br>（并行构建引擎）]
     I --> J[超高速构建<br>（减少构建时间）]
