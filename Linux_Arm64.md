@@ -127,16 +127,16 @@ clean:
         @/bin/rm -f *.ko modules.order *.mod.c *.o *.o.ur-safe .*.o.cmd
 ```
 
-## 本地编译（成功）
+- 本地编译（成功）
 
 ```bash
 cd xdma_driver_arm64/xdma
 make
 ```
 
-## 交叉编译（有报错，暂时弃用）
+- 交叉编译（有报错，暂时弃用）
 
-- 安装交叉编译工具链
+安装交叉编译工具链
 
 ```bash
 cd ~
@@ -149,7 +149,7 @@ export PATH=~/gcc-linaro-11.3.1-2022.06-x86_64_aarch64-linux-gnu/bin:$PATH
 source ~/.bashrc
 ```
 
-- 下载内核源码进行编译
+下载内核源码进行编译
 
 ```bash
 git clone https://github.com/raspberrypi/linux.git
