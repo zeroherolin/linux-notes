@@ -8,9 +8,9 @@
 - MLIR编译测试（浮点复数运算）
 - MLIR to C测试（向量运算）
 
-Halide解耦算法描述
+[Halide解耦算法描述] Updating...
 
-TVM深度学习编译器入门
+[TVM深度学习编译器入门] Updating...
 
 [Torch-MLIR初窥](Torch-MLIR初窥.md)
 
@@ -41,15 +41,20 @@ TVM深度学习编译器入门
 - 内存管理
 - Updating...
 
+## 大模型相关
+
+[Transformer框架学习](Transformer框架学习.md)
+
+- Transformer理论基础
+- Pytorch构建Transformer框架
+
+[Ollama使用](Ollama使用.md)
+
 ## Linux软件安装
 
 [Ubuntu安装Docker](Ubuntu安装Docker.md)
 
 [Ubuntu安装Nvidia驱动、CUDA、Pytorch](Ubuntu安装Nvidia驱动、CUDA、Pytorch.md)
-
-## 大模型相关
-
-[Ollama使用](Ollama使用.md)
 
 ## 其他
 
