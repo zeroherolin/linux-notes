@@ -1,4 +1,4 @@
-# Transformer框架学习
+# Transformer模型
 
 Paper: [Attention Is All You Need](https://arxiv.org/pdf/1706.03762)
 
@@ -6,7 +6,7 @@ Paper: [Attention Is All You Need](https://arxiv.org/pdf/1706.03762)
 
 ### Transformer模型框架
 
-<img src="assets/transformer_arch.png" height=500/> <img src="assets/transformer_layers.png" height=500/>
+<img src="assets/transformer-arch.png" height=500/> <img src="assets/transformer-layers.png" height=500/>
 
 - 整体结构：Encoder-Decoder
 
@@ -119,11 +119,9 @@ Logits = DecoderOutput * W_vocab    # W_vocab ∈ ℝ^{n × vocab_size}
 P(w | context) = softmax(Logits[i])
 ```
 
-## Pytorch构建Transformer框架
+## Pytorch构建Transformer
 
-- 参考代码：[abd_transformer_cyd.py](assets/abd_transformer_cyd.py)
-
-带注释版本代码已备份到本开源仓库，根据BY-NC-SA许可协议注明出处：
-
-> 作者：【B站：水论文的程序猿】 \
-链接：https://www.cnblogs.com/nickchen121/p/16518613.html
+***
+👉 Updating...
+⭐ I like your Star!
+🔙 [Go Back](README.md)

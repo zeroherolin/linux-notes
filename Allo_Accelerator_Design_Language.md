@@ -221,7 +221,7 @@ mod = s.build(target="vhls", mode="csyn", project="gemm.prj")
 
 ## 整数输出稳态脉动阵列
 
-<img src="assets/systolic_array_pes.png" width=400/>
+<img src="assets/systolic-array-pes.png" width=400/>
 
 - 文献版本（已弃用）
 
