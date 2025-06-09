@@ -35,7 +35,7 @@
 - cmake & CMakeLists
 - ninja
 
-[Nvidia CUDA基础](Nvidia_CUDA基础.md)
+[Nvidia CUDA 基础](Nvidia_CUDA_基础.md)
 
 - 核函数
 - 线程模型
